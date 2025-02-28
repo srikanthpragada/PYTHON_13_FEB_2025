@@ -1,4 +1,3 @@
-
 nums = []   # empty list
 
 while True:
