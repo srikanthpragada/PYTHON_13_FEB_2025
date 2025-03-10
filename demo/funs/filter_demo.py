@@ -7,3 +7,6 @@ def iseven(n: any) -> bool :
 
 for n in filter(iseven, lst):
     print(n)
+
+for n in filter(lambda v: v % 2 == 0, lst):
+    print(n)
