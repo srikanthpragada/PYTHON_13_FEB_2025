@@ -1,3 +1,9 @@
+class InsufficientBalanceError(Exception):
+    def __init__(self, balance, amount):
+        self.message = f'Insufficient balance {balance} for withdraw of {amount}'
+    def __str__(self):
+        return self.message
+
 class Account:
     min_balance = 10000
 
@@ -17,7 +23,7 @@ class Account:
         if self.balance - amount >= Account.min_balance:
             self.balance -= amount
         else:
-            print("Sorry! Insufficient Balance!")
+            raise InsufficientBalanceError(self.balance, amount)
 
     def getbalance(self):
         return self.balance
@@ -25,4 +31,10 @@ class Account:
 
 a1 = Account(1, "Larry", 10000)
 a1.depsoit(5000)
-print(a1.getbalance())
+try:
+    a1.withdraw(50000)
+    print(a1.getbalance())
+except Exception as ex:
+    print(ex)
+
+print("The End")
